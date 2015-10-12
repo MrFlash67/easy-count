@@ -10,6 +10,6 @@ var server = http.createServer(function (req, res) {
     } else {
       res.end(i + "\n");
     }
-    i = i++;
+    i++;
 })
 server.listen(port);
