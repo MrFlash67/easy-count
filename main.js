@@ -5,7 +5,7 @@ var server = http.createServer(function (req, res) {
     res.end(i + "\n\n\n\nReload to increment.\nResets often\n" + '\n');
     i++;
 })
-server.listen(80);
+//server.listen(80);
 server.on('error', function (e) {
   // Handle your error here
   console.log(e);
