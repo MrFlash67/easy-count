@@ -4,6 +4,7 @@ var fs = require('fs');
 var i = 0;
 var html = undefined;
 var css = undefined;
+var zepto = undefined;
 var port = process.env.PORT || 3000;
 
 var inc = function() {
@@ -42,10 +43,19 @@ var server = http.createServer(function (req, res) {
 			css = data;
 		});
 		res.end(css);
-	} else {
+	} else if (info.pathname == '/zepto.min.js') {
+        res.writeHead(200, {'Content-Type': 'text/javascript'});
+        fs.readFile('zepto.min.js', 'utf8', function (err,data) {
+            if (err) {
+                return console.log(err);
+            }
+            zepto = data;
+        });
+        res.end(zepto)
+    } else {
         res.writeHead(200, {'Content-Type': 'text/plain'});
         res.end(i + "\n");
 		inc();
     }
 })
-server.listen(port);
+server.listen(8907);
