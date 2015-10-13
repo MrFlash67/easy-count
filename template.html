@@ -4,14 +4,18 @@
 <head>
     <title>What A Nice Number</title>
     <link rel="stylesheet" type="text/css" href="style.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <link href='https://fonts.googleapis.com/css?family=Cutive+Mono' rel='stylesheet' type='text/css'>
-    <!-- <link rel="icon" href="http://lafol.xyz/images/favicon.ico" type="image/x-icon"/>
-    <link rel="shortcut icon" href="http://lafol.xyz/images/favicon.ico" type="image/x-icon"/> -->
 </head>
 
 <body>
-<div id="main"><script>$("#main").load("/api/plaintext");</script></div>
+    <script src=http://zeptojs.com/zepto.min.js></script>
+    <div id="main">
+
+    </div>
+
+    <script type="text/javascript">
+        Zepto("#main").load("/api/plaintext");
+    </script>
 
 </body>
 </html>
