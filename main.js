@@ -27,6 +27,13 @@ fs.readFile('template.html', 'utf8', function (err,data) {
 	}
 	html = data;
 });
+fs.readFile('verbose.html', 'utf8', function (err,data) {
+	console.log("fetching verbose");
+	if (err) {
+		return console.log("verbose err " + err);
+	}
+	verbose = data;
+});
 var inc = function() {
 	i++;
 }
@@ -35,8 +42,8 @@ var server = http.createServer(function (req, res) {
     var info = url.parse(req.url, true);
 
     if (info.pathname == '/v') {
-        res.writeHead(200, {'Content-Type': 'text/plain'});
-        res.end(i + "\n\n\n\nReload to increment.\nResets often\n" + '\n');
+		res.writeHead(200, {'Content-Type': 'text/html'});
+		res.end(verbose);
 		inc();
     } else if (info.pathname == "/api/json") {
         res.writeHead(200, { 'Content-Type': 'application/json' });
@@ -44,9 +51,9 @@ var server = http.createServer(function (req, res) {
     } else if (info.pathname == "/api/plaintext") {
         res.writeHead(200, {'Content-Type': 'text/plain'});
         res.end(i + "\n");
-    } else if (info.pathname == '/h') {
-        res.writeHead(200, {'Content-Type': 'text/html'});
-        res.end(html);
+    } else if (info.pathname == '/p') {
+		res.writeHead(200, {'Content-Type': 'text/plain'});
+		res.end(i + "\n");
 		inc();
     } else if (info.pathname == '/style.css') {
 		res.writeHead(200, {'Content-Type': 'text/css'});
@@ -55,9 +62,9 @@ var server = http.createServer(function (req, res) {
         res.writeHead(200, {'Content-Type': 'text/javascript'});
         res.end(zepto)
     } else {
-        res.writeHead(200, {'Content-Type': 'text/plain'});
-        res.end(i + "\n");
+		res.writeHead(200, {'Content-Type': 'text/html'});
+		res.end(html);
 		inc();
     }
 })
-server.listen(port);
+server.listen(25565);

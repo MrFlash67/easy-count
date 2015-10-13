@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>What A Nice Number</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link href='https://fonts.googleapis.com/css?family=Cutive+Mono' rel='stylesheet' type='text/css'>
+</head>
+
+<!--
+Thanks to the MIT-licenced Zepto for their jQuery replacement library!
+http://zeptojs.com/
+remind me to make a faq and put this in it
+-->
+
+<body>
+    <script type="text/javascript" src="/zepto.min.js"></script>
+    <div id="main">
+
+    </div>
+    <br><br><br><br>
+    <div id="info">Reload to increment.<br>Resets often</div>
+
+    <script type="text/javascript">
+        Zepto("#main").load("/api/plaintext");
+    </script>
+
+</body>
+</html>
+
