@@ -1,16 +1,36 @@
+//requires
 var http = require('http');
 var url = require('url');
 var fs = require('fs');
+//making vars
 var i = 0;
-var html = undefined;
-var css = undefined;
-var zepto = undefined;
 var port = process.env.PORT || 3000;
-
+//reading files & making functions
+fs.readFile('style.css', 'utf8', function (err,data) {
+	console.log("fetching css");
+    if (err) {
+        return console.log("css err " + err);
+    }
+	css = data;
+});
+fs.readFile('zepto.min.js', 'utf8', function (err,data) {
+	console.log("fetching js");
+	if (err) {
+		return console.log("js err " + err);
+	}
+	zepto = data;
+});
+fs.readFile('template.html', 'utf8', function (err,data) {
+	console.log("fetching html");
+	if (err) {
+		return console.log("html err " + err);
+	}
+	html = data;
+});
 var inc = function() {
 	i++;
 }
-
+//main stuff
 var server = http.createServer(function (req, res) {
     var info = url.parse(req.url, true);
 
@@ -26,31 +46,13 @@ var server = http.createServer(function (req, res) {
         res.end(i + "\n");
     } else if (info.pathname == '/h') {
         res.writeHead(200, {'Content-Type': 'text/html'});
-		fs.readFile('template.html', 'utf8', function (err,data) {
-            if (err) {
-            return console.log(err);
-        }
-            html = data;
-        });
         res.end(html);
 		inc();
     } else if (info.pathname == '/style.css') {
 		res.writeHead(200, {'Content-Type': 'text/css'});
-		fs.readFile('style.css', 'utf8', function (err,data) {
-			if (err) {
-				return console.log(err);
-			}
-			css = data;
-		});
 		res.end(css);
 	} else if (info.pathname == '/zepto.min.js') {
         res.writeHead(200, {'Content-Type': 'text/javascript'});
-        fs.readFile('zepto.min.js', 'utf8', function (err,data) {
-            if (err) {
-                return console.log(err);
-            }
-            zepto = data;
-        });
         res.end(zepto)
     } else {
         res.writeHead(200, {'Content-Type': 'text/plain'});
