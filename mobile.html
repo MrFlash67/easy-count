@@ -14,17 +14,18 @@ remind me to make a faq and put this in it
 -->
 
 <body>
-    <script type="text/javascript" src="/zepto.min.js"></script>
-    <div id="main">
-    <br>
+    <div id="mobile">
+        <script type="text/javascript" src="/zepto.min.js"></script>
+        <div id="main">
+            <br>
+        </div>
+
+        <div id="refresh"><button onclick="window.location.reload();" style="width:240px;height:120px;">Refresh</button></div>
+
+        <script type="text/javascript">
+            Zepto("#main").load("/api/plaintext");
+        </script>
     </div>
-
-    <div id="refresh"><button onclick="window.location.reload();">Refresh</button></div>
-
-    <script type="text/javascript">
-        Zepto("#main").load("/api/plaintext");
-    </script>
-
 </body>
 </html>
 
