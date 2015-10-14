@@ -34,6 +34,13 @@ fs.readFile('verbose.html', 'utf8', function (err,data) {
 	}
 	verbose = data;
 });
+fs.readFile('mobile.html', 'utf8', function (err,data) {
+	console.log("fetching mobile");
+	if (err) {
+		return console.log("mobile err " + err);
+	}
+	mobile = data;
+});
 var inc = function() {
 	i++;
 }
@@ -60,8 +67,12 @@ var server = http.createServer(function (req, res) {
 		res.end(css);
 	} else if (info.pathname == '/zepto.min.js') {
         res.writeHead(200, {'Content-Type': 'text/javascript'});
-        res.end(zepto)
-    } else {
+        res.end(zepto);
+	} else if (info.pathname == '/m') {
+		res.writeHead(200, {'Content-Type': 'text/html'});
+		res.end(mobile);
+		inc();
+	}else {
 		res.writeHead(200, {'Content-Type': 'text/html'});
 		res.end(html);
 		inc();
