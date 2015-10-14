@@ -40,7 +40,7 @@ var inc = function() {
 //main stuff
 var server = http.createServer(function (req, res) {
     var info = url.parse(req.url, true);
-
+	console.log("200 OK");
     if (info.pathname == '/v') {
 		res.writeHead(200, {'Content-Type': 'text/html'});
 		res.end(verbose);
