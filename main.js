@@ -86,4 +86,4 @@ var server = http.createServer(function (req, res) {
 		inc();
     }
 })
-server.listen(3030);
+server.listen(port);
