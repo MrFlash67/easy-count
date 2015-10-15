@@ -58,6 +58,14 @@ var server = http.createServer(function (req, res) {
     } else if (info.pathname == "/api/plaintext") {
         res.writeHead(200, {'Content-Type': 'text/plain', 'Access-Control-Allow-Origin': '*'});
         res.end(i + "\n");
+	} else if (info.pathname == "/api/json/inc") {
+		res.writeHead(200, { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'});
+		res.end(JSON.stringify({"number":i}));
+		inc();
+	} else if (info.pathname == "/api/plaintext/inc") {
+		res.writeHead(200, {'Content-Type': 'text/plain', 'Access-Control-Allow-Origin': '*'});
+		res.end(i + "\n");
+		inc();
     } else if (info.pathname == '/p') {
 		res.writeHead(200, {'Content-Type': 'text/plain'});
 		res.end(i + "\n");
@@ -78,4 +86,4 @@ var server = http.createServer(function (req, res) {
 		inc();
     }
 })
-server.listen(port);
+server.listen(3030);
