@@ -53,10 +53,10 @@ var server = http.createServer(function (req, res) {
 		res.end(verbose);
 		inc();
     } else if (info.pathname == "/api/json") {
-        res.writeHead(200, { 'Content-Type': 'application/json' });
+        res.writeHead(200, { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'});
         res.end(JSON.stringify({"number":i}));
     } else if (info.pathname == "/api/plaintext") {
-        res.writeHead(200, {'Content-Type': 'text/plain'});
+        res.writeHead(200, {'Content-Type': 'text/plain', 'Access-Control-Allow-Origin': '*'});
         res.end(i + "\n");
     } else if (info.pathname == '/p') {
 		res.writeHead(200, {'Content-Type': 'text/plain'});
