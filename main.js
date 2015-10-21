@@ -41,6 +41,14 @@ fs.readFile('mobile.html', 'utf8', function (err,data) {
 	}
 	mobile = data;
 });
+fs.readFile('favicon.ico', function (err,data) {
+	console.log("fetching favicon");
+	if (err) {
+		return console.log("favicon err " + err);
+	}
+	console.log(data);
+	favicon = data;
+});
 var inc = function() {
 	i++;
 }
@@ -80,7 +88,10 @@ var server = http.createServer(function (req, res) {
 		res.writeHead(200, {'Content-Type': 'text/html'});
 		res.end(mobile);
 		inc();
-	}else {
+	} else if (info.pathname == '/favicon.ico') {
+			res.writeHead(200, {'Content-Type': 'image/png'});
+			res.end(favicon);
+	} else {
 		res.writeHead(200, {'Content-Type': 'text/html'});
 		res.end(html);
 		inc();
