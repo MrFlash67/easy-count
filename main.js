@@ -4,7 +4,7 @@ var url = require('url');
 var fs = require('fs');
 //making vars
 var i = 0;
-var port = process.env.PORT || 3000;
+var port = 8000;
 //reading files & making functions
 fs.readFile('style.css', 'utf8', function (err,data) {
 	console.log("fetching css");
